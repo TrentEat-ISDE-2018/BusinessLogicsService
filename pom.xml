@@ -14,8 +14,60 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-rt -->
+	<dependency>
+	    <groupId>com.sun.xml.ws</groupId>
+	    <artifactId>jaxws-rt</artifactId>
+	    <version>2.3.0</version>
+	    <type>pom</type>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.ejb/javax.ejb-api -->
+	<dependency>
+	    <groupId>javax.ejb</groupId>
+	    <artifactId>javax.ejb-api</artifactId>
+	    <version>3.2</version>
+	</dependency>
+		<dependency>
+	    <groupId>org.glassfish.jersey.core</groupId>
+	    <artifactId>jersey-client</artifactId>
+	    <version>2.26-b03</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.glassfish.jersey.media</groupId>
+    	<artifactId>jersey-media-json-jackson</artifactId>
+    	<version>2.26-b03</version>
+	</dependency>
   </dependencies>
   <build>
     <finalName>businesslayer</finalName>
+          <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.0.2</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>8.5.31.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
   </build>
 </project>
