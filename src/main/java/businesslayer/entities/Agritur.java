@@ -2,6 +2,12 @@ package businesslayer.entities;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import businesslayer.entities.input.AgriturEntity;
+import businesslayer.entities.input.WeatherResponse;
+
+@XmlRootElement
 public class Agritur implements Serializable {
 	//Agritur data
 	private String phone;
@@ -111,6 +117,29 @@ public class Agritur implements Serializable {
 	}
 	public void setTemp_max(Double temp_max) {
 		this.temp_max = temp_max;
+	}
+	
+	public Agritur() {
+		//added for avoiding compiling error
+	}
+	
+	public Agritur(AgriturEntity ae, WeatherResponse wr) {
+		phone = ae.getPhone();
+		email = ae.getEmail();
+		website = ae.getWebsite();
+		altitude = ae.getAltitude();
+		address = ae.getAddress();
+		lat = ae.getLat();
+		lon = ae.getLon();
+		name = ae.getName();	
+		num_for_eat = ae.getNum_for_eat();
+		num_for_sleep = ae.getNum_for_sleep();
+		//Weather data
+		main = wr.getMain();
+		description = wr.getDescription();
+		temp = wr.getTemp();
+		temp_min = wr.getTemp_min();
+		temp_max = wr.getTemp_max();
 	}
 }
 
