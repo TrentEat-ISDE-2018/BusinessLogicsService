@@ -1,5 +1,8 @@
 package businesslayer.ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jws.WebService;
 
 import businesslayer.entities.Agritur;
@@ -17,6 +20,37 @@ public class AgriturServiceImpl implements AgriturService{
 		
 		Agritur detailed = new Agritur(ae, wr);
 		return detailed;
+	}
+
+	public List<Agritur> getNearAgritur(double distance, double lat, double lon) {
+		List<AgriturEntity> all = GetAgritur.getAll();		
+		List<Agritur> near = new ArrayList<Agritur>();		
+		for(AgriturEntity ae : all) {
+			if(distance > geoDistance(lat, lon, ae.getLat(), ae.getLon())) {
+				near.add(
+						new Agritur(
+								ae, 
+								GetWeather.getWeather(ae.getLat(), ae.getLon())
+								)
+						);
+			}
+		}
+		return near;
+	}
+	
+	private static Double geoDistance(Double lat1, Double lon1, Double lat2, Double lon2) {	
+		//Haversine
+		final int R = 6371; // Radius of the earth
+
+	    double latDistance = Math.toRadians(lat2 - lat1);
+	    double lonDistance = Math.toRadians(lon2 - lon1);
+	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+	            + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+	            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    double distance = R * c; // result in kilometers
+	    
+	    return distance;
 	}
 
 }

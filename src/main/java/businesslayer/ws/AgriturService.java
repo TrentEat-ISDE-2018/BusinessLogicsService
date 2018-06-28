@@ -1,5 +1,7 @@
 package businesslayer.ws;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -12,4 +14,7 @@ public interface AgriturService {
 
 	@WebMethod
 	public Agritur getDetailedAgritur(String name);
+	
+	@WebMethod
+	public List<Agritur> getNearAgritur(double distance, double lat, double lon);
 }
