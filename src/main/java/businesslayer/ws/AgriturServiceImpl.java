@@ -9,6 +9,7 @@ import businesslayer.entities.Agritur;
 import businesslayer.entities.input.AgriturEntity;
 import businesslayer.entities.input.WeatherResponse;
 import businesslayer.getData.GetAgritur;
+import businesslayer.getData.GetRecommendation;
 import businesslayer.getData.GetWeather;
 
 @WebService(endpointInterface = "businesslayer.ws.AgriturService")
@@ -70,13 +71,16 @@ public class AgriturServiceImpl implements AgriturService{
 	}
 
 	public void userMarkAgritur(String userId, String agritur, double mark) {
-		// TODO Auto-generated method stub
+		GetRecommendation.addMark(userId, agritur, mark);
 		
 	}
 
 	public void userViewAgritur(String userId, String agritur) {
-		// TODO Auto-generated method stub
-		
+		GetRecommendation.addView(userId, agritur);
+	}
+
+	public List<Agritur> recommendAgritur(String userId) {
+		return GetRecommendation.getRecommendation(userId);
 	}
 
 }

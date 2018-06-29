@@ -26,4 +26,7 @@ public interface AgriturService {
 	
 	@WebMethod
 	public void userViewAgritur(String userId, String agritur);
+	
+	@WebMethod
+	public List<Agritur> recommendAgritur(String userId);
 }
