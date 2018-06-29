@@ -30,7 +30,7 @@ public class AgriturServiceImpl implements AgriturService{
 				near.add(
 						new Agritur(
 								ae, 
-								GetWeather.getWeather(ae.getLat(), ae.getLon())
+								new WeatherResponse()
 								)
 						);
 			}
@@ -67,6 +67,16 @@ public class AgriturServiceImpl implements AgriturService{
 			}
 		}
 		return matched;
+	}
+
+	public void userMarkAgritur(String userId, String agritur, double mark) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void userViewAgritur(String userId, String agritur) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

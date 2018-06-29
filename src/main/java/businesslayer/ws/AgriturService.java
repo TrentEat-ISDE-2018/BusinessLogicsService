@@ -20,4 +20,10 @@ public interface AgriturService {
 	
 	@WebMethod
 	public List<Agritur> getAgriturByQuery(String query);
+	
+	@WebMethod
+	public void userMarkAgritur(String userId, String agritur, double mark);
+	
+	@WebMethod
+	public void userViewAgritur(String userId, String agritur);
 }
