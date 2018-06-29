@@ -2,12 +2,15 @@ package businesslayer.entities;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import businesslayer.entities.input.AgriturEntity;
 import businesslayer.entities.input.WeatherResponse;
 
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Agritur implements Serializable {
 	//Agritur data
 	private String phone;

@@ -21,7 +21,7 @@ public class AgriturServiceImpl implements AgriturService{
 		Agritur detailed = new Agritur(ae, wr);
 		return detailed;
 	}
-
+	
 	public List<Agritur> getNearAgritur(double distance, double lat, double lon) {
 		List<AgriturEntity> all = GetAgritur.getAll();		
 		List<Agritur> near = new ArrayList<Agritur>();		
@@ -51,6 +51,22 @@ public class AgriturServiceImpl implements AgriturService{
 	    double distance = R * c; // result in kilometers
 	    
 	    return distance;
+	}
+
+	public List<Agritur> getAgriturByQuery(String query) {
+		List<AgriturEntity> all = GetAgritur.getAll();
+		List<Agritur> matched = new ArrayList<Agritur>();		
+		for(AgriturEntity ae : all) {
+			if(ae.getName().contains(query.toUpperCase())) {
+				matched.add(
+						new Agritur(
+								ae, 
+								new WeatherResponse()
+								)
+						);
+			}
+		}
+		return matched;
 	}
 
 }
